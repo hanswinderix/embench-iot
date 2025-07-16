@@ -63,7 +63,7 @@ def decode_results(stdout_str, stderr_str):
     time = re.search('^Clock cycles: (\d+)', stdout_str, re.S)
     if time:
         cycles_elapsed = float(time.group(1))
-        ms_elapsed = cycles_elapsed / (30 * 10e3); # Critical path of 30 ns
+        ms_elapsed = cycles_elapsed * (30 * 10e-6); # Critical path of 30 ns
         # Return value cannot be zero (will be interpreted as error)
         return max(float(ms_elapsed), 0.001)
 
